@@ -79,6 +79,12 @@ class LKPDPBLModule {
       if (data.namaSiswa && window.App) {
         window.App.setStudentName(data.namaSiswa);
       }
+      if (window.AuthDashboard && window.AuthDashboard.currentUser) {
+        window.AuthDashboard.recordOrUpdateStudentRecord(window.AuthDashboard.currentUser, {
+          lkpdStatus: "Selesai",
+          lkpdData: data
+        });
+      }
     } catch (e) {
       console.warn("Gagal menyimpan ke LocalStorage:", e);
     }

@@ -56,7 +56,11 @@ class ChemicalTheoryModule {
   }
 
   init() {
+    window.chemicalTheory = this;
     this.setupSubTabs();
+    this.initMateriNavigation();
+    this.initLabSafetySection();
+    this.initTopicQuizzes();
     this.renderBohrControls();
     this.initBohrCanvas();
     this.renderPeriodicTable();
@@ -78,7 +82,25 @@ class ChemicalTheoryModule {
           view.classList.remove('active');
         });
         const targetView = document.getElementById(targetViewId);
-        if (targetView) targetView.classList.add('active');
+        if (targetView) {
+          targetView.classList.add('active');
+
+          // Reset inner pill filter to 'all' when opening a material
+          const allPill = targetView.querySelector('.materi-pill-btn[data-pane="all"]');
+          if (allPill) {
+            targetView.querySelectorAll('.materi-pill-btn').forEach(b => b.classList.remove('active'));
+            allPill.classList.add('active');
+            targetView.querySelectorAll('.materi-section-block').forEach(b => {
+              b.style.display = 'block';
+            });
+          }
+        }
+
+        // Jika membuka Molymod 3D melalui pintasan, tandai tab Struktur Atom tetap aktif
+        if (targetViewId === 'materi-view-molymod') {
+          const atomTab = document.querySelector('[data-target="materi-view-atom"]');
+          if (atomTab) atomTab.classList.add('active');
+        }
 
         // Restart animation if Bohr canvas is active
         if (targetViewId === 'materi-view-atom') {
@@ -90,6 +112,250 @@ class ChemicalTheoryModule {
         }
       });
     });
+  }
+
+  /* -------------------------------------------------------------
+     0. NAVIGASI SUB-MENU PER MATERI (PILL FILTER & QUICK JUMP)
+     ------------------------------------------------------------- */
+  initMateriNavigation() {
+    const pillBtns = document.querySelectorAll('.materi-pill-btn');
+    pillBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parentView = btn.closest('.materi-sub-view');
+        if (!parentView) return;
+
+        parentView.querySelectorAll('.materi-pill-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const targetPane = btn.dataset.pane;
+        const blocks = parentView.querySelectorAll('.materi-section-block');
+
+        if (targetPane === 'all') {
+          blocks.forEach(block => {
+            block.style.display = 'block';
+          });
+          const innerNav = parentView.querySelector('.materi-inner-nav-bar');
+          if (innerNav) innerNav.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          blocks.forEach(block => {
+            if (block.id === targetPane) {
+              block.style.display = 'block';
+              block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+              block.style.display = 'none';
+            }
+          });
+        }
+
+        // Jika tab simulator Bohr diaktifkan pada Materi 2
+        if (targetPane === 'm2-bohr-sim') {
+          this.initBohrCanvas();
+        }
+      });
+    });
+  }
+
+  /* -------------------------------------------------------------
+     0B. PANDUAN PENGENALAN ALAT LAB & KESELAMATAN KERJA (K3)
+     ------------------------------------------------------------- */
+  initLabSafetySection() {
+    // 1. Filter Kategori Alat Laboratorium
+    const equipFilterBtns = document.querySelectorAll('.equip-filter-btn');
+    const equipCards = document.querySelectorAll('.equip-card');
+    equipFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        equipFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        equipCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 2. Mini Kuis dipusatkan pada initTopicQuizzes()
+    // 3. Pintasan dari Struktur Atom ke Molymod dan sebaliknya
+    const btnOpenMolymod = document.getElementById('btn-open-molymod-subview');
+    if (btnOpenMolymod) {
+      btnOpenMolymod.addEventListener('click', () => {
+        const hiddenTab = document.getElementById('btn-tab-materi-molymod');
+        if (hiddenTab) hiddenTab.click();
+      });
+    }
+    const btnBackToAtom = document.getElementById('btn-back-to-atom-tab');
+    if (btnBackToAtom) {
+      btnBackToAtom.addEventListener('click', () => {
+        const atomTab = document.querySelector('[data-target="materi-view-atom"]');
+        if (atomTab) atomTab.click();
+      });
+    }
+  }
+
+  /* -------------------------------------------------------------
+     0B. ENGINE KUIS PER TOPIK MATERI (TOPIK 1, 2, 3) DENGAN AUTO-SYNC
+     ------------------------------------------------------------- */
+  initTopicQuizzes() {
+    this.quizTopicState = {
+      1: { answered: 0, correct: 0, total: 5 },
+      2: { answered: 0, correct: 0, total: 5 },
+      3: { answered: 0, correct: 0, total: 5 }
+    };
+
+    // Tampilkan skor tersimpan jika siswa sudah pernah mengerjakan kuis topik sebelumnya
+    [1, 2, 3].forEach(t => {
+      const savedScore = localStorage.getItem(`chemvirtuallab_quiz_topik${t}`);
+      if (savedScore !== null) {
+        const scoreVal = parseInt(savedScore, 10);
+        const banner = document.getElementById(`quiz-result-topik-${t}`);
+        const scoreEl = document.getElementById(`quiz-score-val-${t}`);
+        if (banner && scoreEl) {
+          scoreEl.textContent = scoreVal;
+          banner.style.display = 'block';
+        }
+      }
+    });
+
+    const quizBtns = document.querySelectorAll('.materi-quiz-btn, .quiz-k3-btn');
+    quizBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.materi-quiz-card, .quiz-k3-card');
+        if (!card) return;
+
+        // Cegah klik ganda jika kartu ini sudah dijawab
+        if (card.dataset.answered === 'true') return;
+        card.dataset.answered = 'true';
+
+        const topicNum = parseInt(card.dataset.topic, 10) || 1;
+        const allBtns = card.querySelectorAll('.materi-quiz-btn, .quiz-k3-btn');
+        const feedback = card.querySelector('.materi-quiz-feedback, .quiz-k3-feedback');
+        const isCorrect = btn.dataset.correct === 'true';
+
+        // Nonaktifkan semua opsi pada soal ini & beri tanda kunci jawaban
+        allBtns.forEach(b => {
+          b.disabled = true;
+          if (b.dataset.correct === 'true') {
+            b.classList.add('correct');
+          }
+        });
+
+        if (isCorrect) {
+          if (this.quizTopicState[topicNum]) {
+            this.quizTopicState[topicNum].correct++;
+          }
+          if (feedback) {
+            feedback.className = 'materi-quiz-feedback quiz-k3-feedback show correct';
+            feedback.innerHTML = `✅ <strong>Jawaban Tepat! (+20 Poin)</strong> ${btn.dataset.explanation || 'Pemahaman Anda sudah sangat baik!'}`;
+          }
+        } else {
+          btn.classList.add('wrong');
+          if (feedback) {
+            feedback.className = 'materi-quiz-feedback quiz-k3-feedback show wrong';
+            feedback.innerHTML = `❌ <strong>Jawaban Kurang Tepat (0 Poin).</strong> ${btn.dataset.explanation || 'Pelajari kembali ringkasan materi di atas.'}`;
+          }
+        }
+
+        if (this.quizTopicState[topicNum]) {
+          this.quizTopicState[topicNum].answered++;
+
+          // SINKRONISASI REAL-TIME KE DASHBOARD GURU SETIAP KALI SOAL DIJAWAB
+          const currentScore = Math.round((this.quizTopicState[topicNum].correct / this.quizTopicState[topicNum].total) * 100);
+          localStorage.setItem(`chemvirtuallab_quiz_topik${topicNum}`, currentScore.toString());
+          if (window.AuthDashboard && typeof window.AuthDashboard.saveMateriQuizScore === 'function') {
+            window.AuthDashboard.saveMateriQuizScore(topicNum, currentScore, false);
+          }
+
+          // Periksa apakah seluruh 5 soal pada topik ini sudah dijawab
+          if (this.quizTopicState[topicNum].answered >= this.quizTopicState[topicNum].total) {
+            this.finalizeTopicQuiz(topicNum);
+          }
+        }
+      });
+    });
+  }
+
+  finalizeTopicQuiz(topicNum) {
+    const state = this.quizTopicState[topicNum] || { correct: 0, total: 5 };
+    const score = Math.round((state.correct / state.total) * 100);
+
+    const banner = document.getElementById(`quiz-result-topik-${topicNum}`);
+    const scoreVal = document.getElementById(`quiz-score-val-${topicNum}`);
+    const titleEl = document.getElementById(`quiz-result-title-${topicNum}`);
+    const msgEl = document.getElementById(`quiz-result-msg-${topicNum}`);
+
+    if (scoreVal) scoreVal.textContent = score;
+
+    const topicNames = {
+      1: "Topik 1: Pengenalan Alat Lab & K3",
+      2: "Topik 2: Struktur Atom",
+      3: "Topik 3: Sistem Periodik Unsur (SPU)"
+    };
+    const tName = topicNames[topicNum] || `Topik ${topicNum}`;
+
+    if (titleEl) {
+      if (score >= 80) {
+        titleEl.textContent = `🌟 Sempurna! Hasil Kuis ${tName}`;
+      } else if (score >= 60) {
+        titleEl.textContent = `👍 Kerja Bagus! Hasil Kuis ${tName}`;
+      } else {
+        titleEl.textContent = `📚 Hasil Kuis ${tName} Selesai`;
+      }
+    }
+
+    if (msgEl) {
+      msgEl.innerHTML = `Anda menjawab benar <strong>${state.correct} dari ${state.total} soal</strong> (Skor: <strong>${score}/100</strong>). Nilai langsung tersinkronisasi dan otomatis tercatat di Dashboard Guru Kimia.`;
+    }
+
+    if (banner) {
+      banner.style.display = 'block';
+      setTimeout(() => {
+        banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 200);
+    }
+
+    // SIMPAN LANGSUNG KE DASHBOARD GURU & LOCALSTORAGE DENGAN NOTIFIKASI
+    localStorage.setItem(`chemvirtuallab_quiz_topik${topicNum}`, score.toString());
+    if (window.AuthDashboard && typeof window.AuthDashboard.saveMateriQuizScore === 'function') {
+      window.AuthDashboard.saveMateriQuizScore(topicNum, score, true);
+    }
+  }
+
+  resetTopicQuiz(topicNum) {
+    if (this.quizTopicState && this.quizTopicState[topicNum]) {
+      this.quizTopicState[topicNum].answered = 0;
+      this.quizTopicState[topicNum].correct = 0;
+    }
+
+    // Reset kartu soal topik terkait
+    const cards = document.querySelectorAll(`.materi-quiz-card[data-topic="${topicNum}"], .quiz-k3-card[data-topic="${topicNum}"]`);
+    cards.forEach(card => {
+      delete card.dataset.answered;
+      const btns = card.querySelectorAll('.materi-quiz-btn, .quiz-k3-btn');
+      btns.forEach(b => {
+        b.disabled = false;
+        b.classList.remove('correct', 'wrong');
+      });
+      const feedback = card.querySelector('.materi-quiz-feedback, .quiz-k3-feedback');
+      if (feedback) {
+        feedback.className = 'materi-quiz-feedback quiz-k3-feedback';
+        feedback.innerHTML = '';
+      }
+    });
+
+    // Sembunyikan banner hasil
+    const banner = document.getElementById(`quiz-result-topik-${topicNum}`);
+    if (banner) {
+      banner.style.display = 'none';
+    }
+
+    // Scroll ke bagian atas kuis topik tersebut
+    const targetSection = document.getElementById(`m${topicNum}-quiz`);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   /* -------------------------------------------------------------

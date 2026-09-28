@@ -81,9 +81,30 @@ const LAB_EQUIPMENT_DATA = [
   },
   {
     id: "test_tube",
-    name: "Tabung Reaksi & Rak",
-    latinName: "Test Tube & Wooden Rack",
-    category: "Wadah Uji Kualitatif",
+    name: "Tabung Reaksi",
+    latinName: "Test Tube",
+    category: "Wadah & Reaksi",
+    modelType: "test_tube",
+    dim: { radius: 0.38, height: 3.8 },
+    color: 0x93c5fd,
+    opacity: 0.5,
+    svgIcon: `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 10 L24 48 C24 54, 40 54, 40 48 L40 10" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.8"/>
+      <path d="M25 24 L25 48 C25 53, 39 53, 39 48 L39 24 Z" fill="#0284c7" opacity="0.8"/>
+      <ellipse cx="32" cy="10" rx="8" ry="2.2" fill="#bae6fd" stroke="#0284c7" stroke-width="1.5"/>
+      <path d="M20 28 L44 28" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>`,
+    description: "Tabung silinder kaca borosilikat berdasar bulat setengah bola (hemispherical) dengan bibir sedikit melebar. Digunakan untuk mereaksikan sejumlah kecil zat kimia padat maupun cair (skala 1 s.d. 5 mL), mengamati perubahan warna, endapan, dan pembentukan gas.",
+    specs: "Bahan: Kaca Borosilikat 3.3 tahan panas api bunsen. Dimensi umum: 16x150 mm (kapasitas ~20 mL).",
+    meniscusTip: "Isi cairan maksimal sepertiga (1/3) volume tabung jika hendak dipanaskan agar tidak terjadi letupan cairan mendidih (bumping).",
+    safetyNote: "Saat memanaskan tabung reaksi dengan penjepit kayu di atas nyala api, arahkan mulut tabung miring 45° menjauhi diri sendiri dan orang lain!",
+    qrPayload: "CHEM-EQUIP-TEST-TUBE-07"
+  },
+  {
+    id: "test_tube_rack",
+    name: "Rak Tabung Reaksi",
+    latinName: "Test Tube Rack",
+    category: "Pemanas & Penunjang",
     modelType: "test_tube_rack",
     dim: { tubeRadius: 0.35, tubeHeight: 3.6, rackWidth: 5.5 },
     color: 0x93c5fd,
@@ -95,28 +116,21 @@ const LAB_EQUIPMENT_DATA = [
           <stop offset="100%" stop-color="#78350f"/>
         </linearGradient>
       </defs>
-      <!-- Tiang & Papan Rak Tabung Kayu -->
       <rect x="6" y="52" width="52" height="6" rx="1.5" fill="url(#woodGrad)" stroke="#451a03" stroke-width="1.2"/>
       <rect x="6" y="32" width="52" height="4" rx="1" fill="url(#woodGrad)" stroke="#451a03" stroke-width="1.2"/>
       <rect x="8" y="28" width="4" height="28" fill="url(#woodGrad)"/>
       <rect x="52" y="28" width="4" height="28" fill="url(#woodGrad)"/>
-      <!-- Tabung Reaksi 1 (Larutan Biru CuSO4) -->
       <path d="M16 14 L16 48 C16 51, 22 51, 22 48 L22 14" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.2"/>
       <path d="M16.5 30 L16.5 48 C16.5 50.5, 21.5 50.5, 21.5 48 L21.5 30 Z" fill="#0284c7" opacity="0.8"/>
-      <ellipse cx="19" cy="14" rx="3.5" ry="1" fill="#bae6fd" stroke="#0284c7" stroke-width="1"/>
-      <!-- Tabung Reaksi 2 (Larutan Jingga K2Cr2O7) -->
       <path d="M28 12 L28 48 C28 51, 34 51, 34 48 L34 12" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.2"/>
       <path d="M28.5 26 L28.5 48 C28.5 50.5, 33.5 50.5, 33.5 48 L33.5 26 Z" fill="#ea580c" opacity="0.85"/>
-      <ellipse cx="31" cy="12" rx="3.5" ry="1" fill="#bae6fd" stroke="#0284c7" stroke-width="1"/>
-      <!-- Tabung Reaksi 3 (Larutan Hijau NiSO4) -->
       <path d="M40 16 L40 48 C40 51, 46 51, 46 48 L46 16" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.2"/>
       <path d="M40.5 34 L40.5 48 C40.5 50.5, 45.5 50.5, 45.5 48 L45.5 34 Z" fill="#10b981" opacity="0.85"/>
-      <ellipse cx="43" cy="16" rx="3.5" ry="1" fill="#bae6fd" stroke="#0284c7" stroke-width="1"/>
     </svg>`,
-    description: "Tabung silinder kaca borosilikat berdasar bulat setengah bola (hemispherical) bersama rak dudukan kayu atau polimer. Digunakan untuk mereaksikan sejumlah kecil zat kimia, uji kualitatif, uji endapan, dan uji perubahan warna larutan.",
-    specs: "Dimensi tabung umum: 16x150 mm (kapasitas ~20 mL). Rak kayu menampung 6 hingga 12 tabung sekaligus lengkap dengan pin penjemur.",
-    meniscusTip: "Isi cairan maksimal 1/3 volume tabung jika hendak dipanaskan agar tidak terjadi letupan cairan mendidih (bumping).",
-    safetyNote: "Saat memanaskan tabung reaksi dengan penjepit kayu di atas api, arahkan mulut tabung ke arah dinding kosong yang aman, JANGAN PERNAH ke arah diri sendiri atau praktikan lain!",
+    description: "Rak penopang kayu atau polimer dengan lubang deret ganda dan pasak pengering. Berfungsi untuk menyusun dan menempatkan tabung-tabung reaksi dalam posisi tegak agar larutan tidak tumpah dan perbandingan warna reaksi mudah diamati.",
+    specs: "Bahan: Kayu keras pernis tahan uap asam atau polipropilen tahan autoklaf. Kapasitas: 6 - 12 tabung reaksi.",
+    meniscusTip: "Pasak kayu tegak pada rak berfungsi untuk menaruh tabung reaksi yang telah dicuci bersih dengan posisi terbalik agar cepat kering sempurna.",
+    safetyNote: "Pastikan rak diletakkan di permukaan meja datar dan stabil, jauh dari tepi meja kerja agar tidak tersenggol.",
     qrPayload: "CHEM-EQUIP-TEST-TUBE-RACK-07"
   },
   {
@@ -475,8 +489,152 @@ const LAB_EQUIPMENT_DATA = [
     meniscusTip: "Pencet badan botol secara perlahan untuk mengontrol debit pancaran akuades tepat pada dinding wadah yang ingin dibilas.",
     safetyNote: "Jangan pernah mengisi botol semprot bertanda Akuades dengan pelarut asam atau basa berbahaya tanpa memberi label kemasan yang jelas!",
     qrPayload: "CHEM-EQUIP-WASH-BOTTLE-15"
+  },
+  {
+    id: "pipette_graduated",
+    name: "Pipet Ukur",
+    latinName: "Graduated Measuring Pipette",
+    category: "Alat Ukur Volume",
+    modelType: "pipette_graduated",
+    dim: { stemLength: 5.5, radius: 0.18, tipRadius: 0.06 },
+    color: 0xe0f2fe,
+    opacity: 0.65,
+    svgIcon: `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="pipGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#bae6fd" stop-opacity="0.8"/>
+          <stop offset="50%" stop-color="#ffffff" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0.7"/>
+        </linearGradient>
+      </defs>
+      <rect x="29.5" y="8" width="5" height="42" fill="url(#pipGrad)" stroke="#0284c7" stroke-width="1.2"/>
+      <polygon points="29.5,50 34.5,50 33,58 31,58" fill="url(#pipGrad)" stroke="#0284c7" stroke-width="1.2"/>
+      <line x1="30" y1="16" x2="33" y2="16" stroke="#0284c7" stroke-width="0.9"/>
+      <line x1="30" y1="22" x2="34" y2="22" stroke="#0284c7" stroke-width="0.9"/>
+      <line x1="30" y1="28" x2="33" y2="28" stroke="#0284c7" stroke-width="0.9"/>
+      <line x1="30" y1="34" x2="34" y2="34" stroke="#0284c7" stroke-width="0.9"/>
+      <line x1="30" y1="40" x2="33" y2="40" stroke="#0284c7" stroke-width="0.9"/>
+      <rect x="30.5" y="24" width="3" height="26" fill="#38bdf8" opacity="0.7"/>
+      <circle cx="32" cy="60" r="1.3" fill="#38bdf8"/>
+    </svg>`,
+    description: "Pipet kaca silinder panjang bergaris skala fraksional mililiter di sepanjang batangnya. Digunakan untuk memindahkan larutan dalam berbagai variasi volume terukur (misal 3.2 mL, 7.5 mL) dengan ketelitian kuantitatif tinggi.",
+    specs: "Kapasitas umum: 5 mL, 10 mL, 25 mL dengan sub-skala 0.1 mL. Bahan Kaca Borosilikat Kelas AS toleransi ±0.05 mL.",
+    meniscusTip: "Gunakan bola hisap (rubber filler) 3 katup. Sejajarkan mata dengan dasar meniskus cekung tepat pada angka volume yang diinginkan.",
+    safetyNote: "Dilarang menyedot zat cair kimia dengan mulut! Selalu gunakan bola penghisap lateks (propipet / bulb).",
+    qrPayload: "CHEM-EQUIP-GRADUATED-PIPETTE-16"
+  },
+  {
+    id: "crucible",
+    name: "Krus Porselen (Crucible)",
+    latinName: "Porcelain Crucible with Lid",
+    category: "Wadah & Reaksi",
+    modelType: "crucible",
+    dim: { radiusTop: 1.6, radiusBottom: 1.0, height: 2.2 },
+    color: 0xf8fafc,
+    opacity: 0.95,
+    svgIcon: `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="32" cy="18" rx="16" ry="4" fill="#e2e8f0" stroke="#64748b" stroke-width="1.3"/>
+      <path d="M16 18 C16 38, 22 48, 32 48 C42 48, 48 38, 48 18 Z" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+      <path d="M15 16 C15 12, 49 12, 49 16 Z" fill="#e2e8f0" stroke="#64748b" stroke-width="1.3"/>
+      <circle cx="32" cy="11" r="2.5" fill="#94a3b8"/>
+    </svg>`,
+    description: "Cawan porselen keramik tahan api tinggi berbentuk mangkuk dalam dengan tutup pas. Digunakan untuk memanaskan zat padat atau sampel gravimetri pada suhu sangat tinggi hingga ratusan hingga ribuan derajat Celcius (pengabuan / kalsinasi).",
+    specs: "Bahan: Porselen glasir tinggi tahan suhu hingga 1150°C. Kapasitas: 30 mL s.d. 50 mL.",
+    meniscusTip: "Letakkan di atas segitiga porselen (pipeclay triangle) saat dipanaskan di atas nyala Bunsen.",
+    safetyNote: "Selalu gunakan tang krus (crucible tongs) saat mengangkat atau memindahkan krus yang panas ke dalam desikator. Jangan ditaruh langsung di atas meja lab!",
+    qrPayload: "CHEM-EQUIP-CRUCIBLE-17"
+  },
+  {
+    id: "test_tube_clamp",
+    name: "Penjepit Tabung & Tang Krus",
+    latinName: "Test Tube Clamp & Crucible Tongs",
+    category: "Pemanas & Penunjang",
+    modelType: "test_tube_clamp",
+    dim: { length: 5.5, jawWidth: 1.2 },
+    color: 0xb45309,
+    opacity: 0.95,
+    svgIcon: `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="29" width="38" height="6" rx="2" fill="#d97706" stroke="#78350f" stroke-width="1.2"/>
+      <path d="M46 26 C52 26, 56 30, 56 32 C56 34, 52 38, 46 38" fill="none" stroke="#78350f" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="24" cy="32" r="3" fill="#94a3b8" stroke="#475569" stroke-width="1"/>
+    </svg>`,
+    description: "Penjepit berpegas dari kayu atau logam baja tahan karat. Digunakan untuk memegang leher tabung reaksi atau cawan krus saat dilakukan pemanasan langsung di atas api agar tangan praktikan tidak melepuh terkena rambatan kalor.",
+    specs: "Bahan: Kayu keras pernis dengan pegas baja elastis atau stainless steel lapis krom anti-panas. Panjang: 18 cm.",
+    meniscusTip: "Jepit tabung pada 1/3 bagian atas mendekati mulut tabung agar posisi tabung stabil dan tidak licin.",
+    safetyNote: "Pastikan pegas penjepit mencengkeram kuat tabung sebelum mengangkatnya ke atas nyala api. Jangan jepit bagian bawah tabung yang langsung terkena api.",
+    qrPayload: "CHEM-EQUIP-TEST-TUBE-CLAMP-18"
+  },
+  {
+    id: "digital_balance",
+    name: "Neraca Analitik Digital",
+    latinName: "Digital Analytical Balance",
+    category: "Instrumen Analitik",
+    modelType: "digital_balance",
+    dim: { width: 4.8, depth: 3.6, height: 3.8 },
+    color: 0x38bdf8,
+    opacity: 0.9,
+    svgIcon: `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="38" width="48" height="20" rx="3" fill="#1e293b" stroke="#0f172a" stroke-width="1.5"/>
+      <rect x="18" y="44" width="28" height="8" rx="1.5" fill="#0284c7"/>
+      <text x="32" y="50" font-size="5" fill="#ffffff" font-family="monospace" font-weight="bold" text-anchor="middle">0.0000 g</text>
+      <rect x="12" y="14" width="40" height="24" rx="2" fill="#e0f2fe" fill-opacity="0.3" stroke="#38bdf8" stroke-width="1.2"/>
+      <ellipse cx="32" cy="34" rx="10" ry="2.5" fill="#94a3b8" stroke="#475569" stroke-width="1"/>
+    </svg>`,
+    description: "Timbangan elektronik presisi ultra-tinggi yang dilengkapi lemari kaca penahan aliran udara (draft shield). Digunakan untuk menimbang zat kimia padat analitis dengan tingkat akurasi hingga 4 desimal (0.0001 gram / 0.1 mg).",
+    specs: "Ketelitian: 0.1 mg (0.0001 g). Kapasitas maksimum: 220 g. Dilengkapi sensor elektromagnetik dan auto-kalibrasi internal.",
+    meniscusTip: "Tutup seluruh pintu geser kaca pelindung sebelum membaca angka timbangan agar hembusan nafas atau AC ruangan tidak mengacaukan pembacaan massa.",
+    safetyNote: "Dilarang keras meletakkan zat kimia secara langsung di atas piringan logam timbangan! Selalu gunakan kertas timbang atau kaca arloji bersih.",
+    qrPayload: "CHEM-EQUIP-DIGITAL-BALANCE-19"
+  },
+  {
+    id: "ph_meter",
+    name: "pH Meter & Indikator Universal",
+    latinName: "Digital pH Meter & Indicator Paper",
+    category: "Instrumen Analitik",
+    modelType: "ph_meter",
+    dim: { length: 5.2, width: 1.2, probeLength: 2.2 },
+    color: 0x10b981,
+    opacity: 0.95,
+    svgIcon: `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="22" y="6" width="20" height="34" rx="3" fill="#0f766e" stroke="#115e59" stroke-width="1.5"/>
+      <rect x="25" y="10" width="14" height="10" rx="1.5" fill="#ccfbf1"/>
+      <text x="32" y="17" font-size="6" fill="#0f766e" font-family="monospace" font-weight="bold" text-anchor="middle">7.02</text>
+      <rect x="29" y="40" width="6" height="16" fill="#94a3b8" stroke="#475569" stroke-width="1"/>
+      <circle cx="32" cy="56" r="3" fill="#38bdf8" opacity="0.8"/>
+    </svg>`,
+    description: "Instrumen potensiometri elektronik dengan sensor elektroda kombinasi kaca untuk mengukur derajat keasaman atau kebasaan (pH) larutan secara cepat, akurat, dan kontinu pada rentang skala 0.00 s.d. 14.00.",
+    specs: "Akurasi: ±0.01 pH. Dilengkapi sensor kompensasi temperatur otomatis (ATC 0-50°C) dan kalibrasi 3 titik buffer.",
+    meniscusTip: "Bilas elektroda kaca dengan semprotan akuades dan keringkan dengan menempelkan tisu halus secara lembut (jangan digosok) sebelum mencelup ke sampel baru.",
+    safetyNote: "Pastikan elektroda kaca selalu tersimpan dalam larutan penyimpan KCl 3M saat tidak digunakan agar membran kaca tidak kering dan rusak permanen.",
+    qrPayload: "CHEM-EQUIP-PH-METER-20"
+  },
+  {
+    id: "thermometer",
+    name: "Termometer Laboratorium",
+    latinName: "Laboratory Thermometer (-10°C to 110°C)",
+    category: "Instrumen Analitik",
+    modelType: "thermometer",
+    dim: { length: 6.2, stemRadius: 0.16, bulbRadius: 0.3 },
+    color: 0xef4444,
+    opacity: 0.9,
+    svgIcon: `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="29" y="6" width="6" height="44" rx="3" fill="#e0f2fe" fill-opacity="0.6" stroke="#0284c7" stroke-width="1.2"/>
+      <rect x="31" y="16" width="2" height="34" fill="#ef4444"/>
+      <circle cx="32" cy="52" r="5" fill="#dc2626"/>
+      <line x1="35" y1="12" x2="38" y2="12" stroke="#0284c7" stroke-width="0.8"/>
+      <line x1="35" y1="20" x2="38" y2="20" stroke="#0284c7" stroke-width="0.8"/>
+      <line x1="35" y1="28" x2="38" y2="28" stroke="#0284c7" stroke-width="0.8"/>
+      <line x1="35" y1="36" x2="38" y2="36" stroke="#0284c7" stroke-width="0.8"/>
+      <line x1="35" y1="44" x2="38" y2="44" stroke="#0284c7" stroke-width="0.8"/>
+    </svg>`,
+    description: "Batang kaca silinder pejal kapiler bersegel dengan reservoir bola merah cairan alkohol/raksa di bagian dasar dan skala suhu terukir permanen. Digunakan untuk memantau perubahan temperatur reaksi eksotermik/endotermik dan titik didih larutan.",
+    specs: "Rentang Suhu: -10°C sampai 110°C (sub-skala 1°C). Cairan pengisi: Alkohol organik merah ramah lingkungan bebas merkuri berbahaya.",
+    meniscusTip: "Pastikan seluruh bola reservoir tercelup di tengah cairan tanpa menyentuh dinding atau dasar wadah yang bersentuhan dengan pemanas.",
+    safetyNote: "DILARANG menggunakan termometer sebagai batang pengaduk larutan! Kaca kapiler sangat tipis dan mudah patah jika terbentur.",
+    qrPayload: "CHEM-EQUIP-THERMOMETER-21"
   }
 ];
 
 // Helper global
 window.LAB_EQUIPMENT_DATA = LAB_EQUIPMENT_DATA;
+

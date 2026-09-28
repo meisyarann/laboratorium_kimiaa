@@ -2075,9 +2075,7 @@ a:hover {
    ========================================================================== */
 
 .materi-sub-tabs {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  display: none !important;
 }
 
 .materi-sub-view {
@@ -2085,6 +2083,1088 @@ a:hover {
 }
 .materi-sub-view.active {
   display: block;
+}
+
+/* ==========================================================================
+   TAMPILAN MENU UTAMA PER MATERI (HUB & SUB-NAV)
+   ========================================================================== */
+
+/* Hub Menu Container */
+.materi-menu-hub {
+  padding: 0.5rem 0 1rem 0;
+}
+
+.materi-hub-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.materi-hub-badge {
+  display: inline-block;
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: #eff6ff;
+  color: #0284c7;
+  border: 1px solid #bfdbfe;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.6rem;
+}
+
+.materi-hub-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.materi-hub-subtitle {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* 3 Cards Grid for Materi Menu */
+.materi-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.materi-hub-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-xl);
+  padding: 1.75rem 1.5rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.materi-hub-card:hover {
+  transform: translateY(-6px);
+  border-color: #0284c7;
+  box-shadow: 0 16px 32px rgba(2, 132, 199, 0.15);
+}
+
+.materi-hub-card.card-m1:hover {
+  border-color: #0284c7;
+  box-shadow: 0 16px 32px rgba(2, 132, 199, 0.15);
+}
+
+.materi-hub-card.card-m2:hover {
+  border-color: #8b5cf6;
+  box-shadow: 0 16px 32px rgba(139, 92, 246, 0.15);
+}
+
+.materi-hub-card.card-m3:hover {
+  border-color: #10b981;
+  box-shadow: 0 16px 32px rgba(16, 185, 129, 0.15);
+}
+
+.materi-card-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+.materi-card-badge.m1-badge {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #7dd3fc;
+}
+
+.materi-card-badge.m2-badge {
+  background: #ede9fe;
+  color: #6d28d9;
+  border: 1px solid #c4b5fd;
+}
+
+.materi-card-badge.m3-badge {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+
+.materi-card-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.85rem;
+  margin-bottom: 1.1rem;
+}
+
+.materi-card-icon-wrap.m1-icon {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  border: 1px solid #7dd3fc;
+}
+
+.materi-card-icon-wrap.m2-icon {
+  background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+  border: 1px solid #c4b5fd;
+}
+
+.materi-card-icon-wrap.m3-icon {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border: 1px solid #86efac;
+}
+
+.materi-card-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+}
+
+.materi-card-desc {
+  font-size: 0.86rem;
+  color: #475569;
+  line-height: 1.55;
+  margin-bottom: 1.2rem;
+}
+
+.materi-card-subtopics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.4rem;
+  flex: 1;
+}
+
+.subtopic-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.74rem;
+  font-weight: 600;
+  border: 1px solid #e2e8f0;
+}
+
+.materi-card-action-bar {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.materi-action-link {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: gap 0.2s;
+}
+
+.materi-hub-card:hover .materi-action-link {
+  gap: 0.65rem;
+}
+
+.materi-hub-card.card-m2 .materi-action-link {
+  color: #7c3aed;
+}
+
+.materi-hub-card.card-m3 .materi-action-link {
+  color: #059669;
+}
+
+/* Inner Navigation Bar per Materi (Sub-Menu Bar) */
+.materi-inner-nav-bar {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-lg);
+  padding: 0.85rem 1.15rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-xs);
+  position: sticky;
+  top: 70px;
+  z-index: 20;
+}
+
+.btn-back-to-hub {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-md);
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-back-to-hub:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+.materi-subnav-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.materi-pill-btn {
+  padding: 0.38rem 0.85rem;
+  border-radius: var(--radius-full);
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.materi-pill-btn:hover {
+  background: #e0f2fe;
+  border-color: #38bdf8;
+  color: #0284c7;
+}
+
+.materi-pill-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+}
+
+/* Footer Nav per Materi */
+.materi-step-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  border-top: 2px dashed #e2e8f0;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Materi Hero Banner */
+.materi-hero-banner {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+  border: 1.5px solid #7dd3fc;
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.materi-hero-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0369a1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.materi-hero-desc {
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.5;
+  max-width: 820px;
+}
+
+.materi-section-block {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.8rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.materi-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.materi-section-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Filter Bar Alat Laboratorium */
+.equip-filter-bar {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
+}
+
+.equip-filter-btn {
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.equip-filter-btn:hover {
+  background: #e0f2fe;
+  color: #0284c7;
+  border-color: #38bdf8;
+}
+
+.equip-filter-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+}
+
+/* Equipment Grid & Cards */
+.equip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.2rem;
+}
+
+.equip-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.equip-card:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 8px 20px rgba(2, 132, 199, 0.12);
+  transform: translateY(-2px);
+}
+
+.equip-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.equip-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  border: 1px solid #7dd3fc;
+}
+
+.equip-card-meta {
+  flex: 1;
+}
+
+.equip-card-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.15rem;
+}
+
+.equip-card-english {
+  font-size: 0.78rem;
+  color: #64748b;
+  font-style: italic;
+}
+
+.equip-card-badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  margin-top: 0.3rem;
+}
+
+.equip-card-badge.volume { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+.equip-card-badge.wadah { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+.equip-card-badge.pemanas { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+.equip-card-badge.instrumen { background: #faf5ff; color: #7e22ce; border-color: #e9d5ff; }
+
+.equip-card-body {
+  font-size: 0.83rem;
+  color: #334155;
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+  flex: 1;
+}
+
+.equip-card-tips {
+  background: #f8fafc;
+  border-left: 3px solid #0284c7;
+  padding: 0.5rem 0.65rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.78rem;
+  color: #475569;
+  margin-bottom: 0.85rem;
+}
+
+.equip-card-action {
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* Meniscus Guide Box */
+.meniscus-guide-box {
+  background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+  border: 1.5px solid #bfdbfe;
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.meniscus-item {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.meniscus-item-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0369a1;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.meniscus-item-desc {
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* K3 Dos & Donts Grid */
+.safety-rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.safety-rule-card {
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  border: 1.5px solid;
+}
+
+.safety-rule-card.dos {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.safety-rule-card.donts {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.safety-rule-header {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.safety-rule-card.dos .safety-rule-header { color: #166534; }
+.safety-rule-card.donts .safety-rule-header { color: #991b1b; }
+
+.safety-rule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.safety-rule-list li {
+  font-size: 0.83rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.safety-rule-card.dos .safety-rule-list li { color: #14532d; }
+.safety-rule-card.donts .safety-rule-list li { color: #7f1d1d; }
+
+/* Special Principle Cards: Asam ke Air & Wafting */
+.special-principles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.principle-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.principle-card-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.5rem;
+}
+
+.principle-card-title {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.principle-card-text {
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* GHS Grid */
+.ghs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.ghs-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  transition: all var(--transition-fast);
+}
+
+.ghs-card:hover {
+  border-color: #ef4444;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.12);
+  transform: translateY(-2px);
+}
+
+.ghs-diamond-box {
+  width: 46px;
+  height: 46px;
+  background: #ffffff;
+  border: 2.5px solid #dc2626;
+  border-radius: 8px;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 6px 6px 0 6px;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.2);
+}
+
+.ghs-diamond-inner {
+  transform: rotate(-45deg);
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ghs-meta {
+  flex: 1;
+}
+
+.ghs-name {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #991b1b;
+  margin-bottom: 0.15rem;
+}
+
+.ghs-hazard {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 0.35rem;
+}
+
+.ghs-examples {
+  font-size: 0.74rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* Emergency Procedures Grid */
+.emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.emergency-card {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-left: 4px solid #f97316;
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.emergency-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #c2410c;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.emergency-text {
+  font-size: 0.81rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* Mini Quiz Lab & K3 */
+.quiz-k3-container {
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+}
+
+.quiz-k3-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.quiz-k3-card:last-child {
+  margin-bottom: 0;
+}
+
+.quiz-k3-question {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.75rem;
+}
+
+.quiz-k3-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.quiz-k3-btn {
+  text-align: left;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.quiz-k3-btn:hover:not(:disabled) {
+  background: #e0f2fe;
+  border-color: #38bdf8;
+  color: #0284c7;
+}
+
+.quiz-k3-btn.correct {
+  background: #dcfce7 !important;
+  border-color: #22c55e !important;
+  color: #15803d !important;
+  font-weight: 700;
+}
+
+.quiz-k3-btn.wrong {
+  background: #fee2e2 !important;
+  border-color: #ef4444 !important;
+  color: #b91c1c !important;
+}
+
+.quiz-k3-feedback {
+  margin-top: 0.65rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  display: none;
+}
+
+.quiz-k3-feedback.show {
+  display: block;
+}
+
+.quiz-k3-feedback.correct {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.quiz-k3-feedback.wrong {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+}
+
+/* Materi Quizzes General Styles */
+.materi-quiz-container {
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-lg, 12px);
+  padding: 1.35rem;
+}
+
+.materi-quiz-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md, 10px);
+  padding: 1.15rem;
+  margin-bottom: 1.1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.materi-quiz-card:last-child {
+  margin-bottom: 0;
+}
+
+.materi-quiz-question {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-dark, #0f172a);
+  margin-bottom: 0.75rem;
+  line-height: 1.45;
+}
+
+.materi-quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.materi-quiz-btn {
+  text-align: left;
+  padding: 0.6rem 0.95rem;
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+
+.materi-quiz-btn:hover:not(:disabled) {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1d4ed8;
+  transform: translateX(3px);
+}
+
+.materi-quiz-btn.correct {
+  background: #dcfce7 !important;
+  border-color: #22c55e !important;
+  color: #15803d !important;
+  font-weight: 700;
+}
+
+.materi-quiz-btn.wrong {
+  background: #fee2e2 !important;
+  border-color: #ef4444 !important;
+  color: #b91c1c !important;
+}
+
+.materi-quiz-feedback {
+  margin-top: 0.75rem;
+  padding: 0.65rem 0.95rem;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  display: none;
+}
+
+.materi-quiz-feedback.show {
+  display: block;
+  animation: fadeInFeedback 0.25s ease-out;
+}
+
+@keyframes fadeInFeedback {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.materi-quiz-feedback.correct {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.materi-quiz-feedback.wrong {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+}
+
+/* Banner Hasil Skor Kuis Materi & Sinkronisasi Dashboard Guru */
+.materi-quiz-result-banner {
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+  border: 2px solid #86efac;
+  border-radius: var(--radius-lg, 12px);
+  padding: 1.5rem;
+  box-shadow: 0 4px 14px rgba(22, 101, 52, 0.08);
+  animation: fadeInBanner 0.4s ease-out;
+}
+
+@keyframes fadeInBanner {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.quiz-result-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.quiz-result-score-badge {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md, 10px);
+  text-align: center;
+  min-width: 105px;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+}
+
+.quiz-result-score-badge .quiz-score-val {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+  display: block;
+}
+
+.quiz-result-score-badge .quiz-score-max {
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0.95;
+  letter-spacing: 0.5px;
+}
+
+.quiz-result-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.quiz-result-info h4 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.35rem;
+}
+
+.quiz-result-info p {
+  font-size: 0.88rem;
+  color: #334155;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.quiz-result-sync-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid #22c55e;
+  color: #15803d;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+}
+
+.quiz-result-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(134, 239, 172, 0.5);
+  padding-top: 1rem;
+}
+
+/* Theory Info Cards in Tab 2 & Tab 3 */
+.theory-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.theory-card-box {
+  background: #ffffff;
+  border: 1.5px solid #bfdbfe;
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-fast);
+}
+
+.theory-card-box:hover {
+  border-color: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.theory-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0369a1;
+  margin-bottom: 0.5rem;
+}
+
+.theory-card-content {
+  font-size: 0.82rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.atom-model-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.atom-timeline-card {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-top: 3.5px solid #0284c7;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+}
+
+.atom-timeline-year {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #0284c7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.atom-timeline-scientist {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 0.2rem 0 0.35rem 0;
+}
+
+.atom-timeline-desc {
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+  .safety-rules-grid,
+  .special-principles-grid,
+  .meniscus-guide-box {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Simulator Model Atom Bohr */
@@ -4439,3 +5519,651 @@ a:hover {
     padding: 0.28rem 0.55rem;
   }
 }
+
+/* ==========================================================================
+   MODAL 3D APPARATUS INSPECTOR & LIVE CAMERA AR ENGINE (19 ALAT LAB)
+   ========================================================================== */
+.apparatus-3d-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10500;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  animation: fadeInApparatusBackdrop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInApparatusBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.apparatus-3d-dialog {
+  background: #ffffff;
+  border-radius: 22px;
+  width: min(1120px, 96vw);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  animation: scaleInApparatusDialog 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scaleInApparatusDialog {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Header Modal */
+.apparatus-3d-header {
+  padding: 1.1rem 1.6rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.apparatus-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.apparatus-header-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  border: 1px solid #7dd3fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.15);
+  flex-shrink: 0;
+}
+
+.apparatus-header-icon-box svg {
+  width: 34px;
+  height: 34px;
+}
+
+.apparatus-header-title-box h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.apparatus-header-latin {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-style: italic;
+  margin-top: 0.15rem;
+}
+
+.apparatus-header-badges {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.apparatus-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.apparatus-modal-close-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.apparatus-modal-close-btn:hover {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #dc2626;
+  transform: rotate(90deg);
+}
+
+/* Body Modal (2 Columns) */
+.apparatus-3d-body {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 1.4rem;
+  padding: 1.4rem 1.6rem;
+  overflow: hidden;
+  max-height: calc(92vh - 80px);
+}
+
+/* Kolom Kiri: 3D Viewport */
+.apparatus-viewport-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.apparatus-canvas-wrap {
+  width: 100%;
+  height: 420px;
+  background: radial-gradient(circle at center, #1e293b 0%, #090d16 100%);
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid #334155;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.apparatus-canvas-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  cursor: grab;
+  position: relative;
+  z-index: 2;
+}
+
+.apparatus-canvas-wrap canvas:active {
+  cursor: grabbing;
+}
+
+.apparatus-canvas-wrap video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.apparatus-canvas-wrap.ar-mode-active {
+  background: transparent !important;
+}
+
+.apparatus-gesture-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+  background: #f8fafc;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+/* 3D Control Toolbar */
+.apparatus-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  background: #f1f5f9;
+  padding: 0.45rem 0.6rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.apparatus-tool-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.apparatus-tool-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.apparatus-tool-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+}
+
+.apparatus-tool-btn.btn-ar-launch {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
+  border-color: #059669;
+}
+
+.apparatus-tool-btn.btn-ar-launch:hover {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.apparatus-tool-btn.btn-ar-launch.active {
+  background: #e11d48;
+  border-color: #be123c;
+}
+
+/* Kolom Kanan: Detail Edukasi & SOP */
+.apparatus-info-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.apparatus-info-scroll {
+  overflow-y: auto;
+  padding-right: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.apparatus-info-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.apparatus-info-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.apparatus-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.info-section-title {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.info-text {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.info-highlight-box {
+  background: #f0f9ff;
+  border-left: 3.5px solid #0284c7;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.85rem;
+  color: #0369a1;
+  line-height: 1.5;
+}
+
+.info-meniscus-box {
+  background: #fffbeb;
+  border-left: 3.5px solid #f59e0b;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.85rem;
+  color: #92400e;
+  line-height: 1.5;
+}
+
+.info-safety-box {
+  background: #fef2f2;
+  border-left: 3.5px solid #ef4444;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.85rem;
+  color: #991b1b;
+  line-height: 1.5;
+}
+
+/* Navigasi Bawah Modal */
+.apparatus-modal-nav-bar {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.apparatus-counter-indicator {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0284c7;
+  background: #e0f2fe;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+}
+
+/* Enhanced Hover & Buttons on Equipment Grid Cards */
+.equip-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+.equip-card:hover {
+  transform: translateY(-4px);
+  border-color: #38bdf8 !important;
+  box-shadow: 0 12px 24px -6px rgba(2, 132, 199, 0.22), 0 0 0 1px rgba(56, 189, 248, 0.4) !important;
+}
+
+.btn-open-3d-ar {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0.5rem 0.8rem !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+}
+
+.btn-open-3d-ar:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.45);
+}
+
+/* Responsiveness on Small Screens */
+@media (max-width: 900px) {
+  .apparatus-3d-body {
+    grid-template-columns: 1fr;
+    max-height: 84vh;
+    overflow-y: auto;
+  }
+
+  .apparatus-canvas-wrap {
+    height: 300px;
+  }
+}
+
+/* ==========================================================================
+   ATURAN & SOP PRAKTIKUM, LIMBAH B3, APAR P.A.S.S., & SPILL KIT STYLES
+   ========================================================================== */
+
+/* 3 Tahapan Praktikum Grid */
+.sop-stages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.sop-stage-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sop-stage-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.sop-stage-card.stage-pre {
+  border-top: 4px solid #0284c7;
+}
+
+.sop-stage-card.stage-during {
+  border-top: 4px solid #f59e0b;
+}
+
+.sop-stage-card.stage-post {
+  border-top: 4px solid #10b981;
+}
+
+.sop-stage-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sop-stage-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stage-pre .sop-stage-badge {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.stage-during .sop-stage-badge {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.stage-post .sop-stage-badge {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.sop-stage-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.sop-stage-header h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.sop-stage-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.sop-stage-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.55;
+}
+
+.sop-bullet {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Limbah B3 Section Grid */
+.limbah-b3-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-top: 0.85rem;
+}
+
+.limbah-card {
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.limbah-card:hover {
+  transform: translateY(-2px);
+}
+
+.limbah-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.limbah-tag {
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  align-self: flex-start;
+}
+
+/* APAR P.A.S.S. Method Grid */
+.pass-method-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.pass-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pass-card:hover {
+  transform: translateY(-3px);
+  border-color: #ef4444;
+  box-shadow: 0 8px 18px rgba(239, 68, 68, 0.12);
+}
+
+.pass-letter-badge {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.85rem auto;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+}
+
+.pass-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.pass-desc {
+  font-size: 0.84rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* Chemical Spill Kit Grid */
+.spill-kit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.spill-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  transition: transform 0.2s ease;
+}
+
+.spill-card:hover {
+  transform: translateY(-2px);
+}
+
+.spill-header {
+  margin-bottom: 0.75rem;
+}
+
+.spill-badge {
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.spill-badge.acid {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.spill-badge.base {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.spill-badge.mercury {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.spill-badge.solvent {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.spill-body {
+  font-size: 0.85rem;
+  color: #334155;
+  line-height: 1.55;
+}
+

@@ -45,7 +45,17 @@ class AppController {
     this.initNavigation();
     this.initSubModules();
     this.updateGlobalProgress();
-    this.navigateToModule(this.currentModuleId, false);
+
+    // Periksa role user aktif saat inisialisasi
+    if (window.AuthDashboard && window.AuthDashboard.currentUser) {
+      if (window.AuthDashboard.currentUser.role === 'guru') {
+        this.navigateToDashboard(false);
+      } else {
+        this.navigateToModule(this.currentModuleId, false);
+      }
+    } else {
+      this.navigateToModule(this.currentModuleId, false);
+    }
   }
 
   loadState() {
@@ -90,6 +100,7 @@ class AppController {
     }
     if (window.ChemicalTheoryModule) {
       this.chemTheoryModule = new window.ChemicalTheoryModule();
+      window.chemicalTheory = this.chemTheoryModule;
       this.chemTheoryModule.init();
     }
     if (window.VirtualLabsModule) {
@@ -121,7 +132,6 @@ class AppController {
         e.preventDefault();
         const modId = parseInt(item.dataset.mod, 10);
         if (modId) {
-          this.playClickSound();
           this.navigateToModule(modId);
         }
       });
@@ -132,7 +142,6 @@ class AppController {
       card.addEventListener('click', () => {
         const modId = parseInt(card.dataset.mod, 10);
         if (modId) {
-          this.playClickSound();
           this.navigateToModule(modId);
         }
       });
@@ -141,8 +150,15 @@ class AppController {
     // Next / Previous Buttons in Page Footers
     document.querySelectorAll('.btn-page-prev').forEach(btn => {
       btn.addEventListener('click', () => {
-        if (this.currentModuleId > 1) {
-          this.playClickSound();
+        if (this.currentModuleId === 5) {
+          this.navigateToModule(2);
+        } else if (this.currentModuleId === 8) {
+          this.navigateToModule(5);
+        } else if (this.currentModuleId === 9) {
+          this.navigateToModule(8);
+        } else if (this.currentModuleId === 10) {
+          this.navigateToModule(9);
+        } else if (this.currentModuleId > 1) {
           this.navigateToModule(this.currentModuleId - 1);
         }
       });
@@ -150,8 +166,22 @@ class AppController {
 
     document.querySelectorAll('.btn-page-next').forEach(btn => {
       btn.addEventListener('click', () => {
-        if (this.currentModuleId < this.totalModules) {
-          this.playClickSound();
+        if (this.currentModuleId === 2) {
+          this.markModuleCompleted(2);
+          this.navigateToModule(5);
+        } else if (this.currentModuleId === 3) {
+          this.markModuleCompleted(3);
+          this.navigateToModule(5);
+        } else if (this.currentModuleId === 5) {
+          this.markModuleCompleted(5);
+          this.navigateToModule(8);
+        } else if (this.currentModuleId === 8) {
+          this.markModuleCompleted(8);
+          this.navigateToModule(9);
+        } else if (this.currentModuleId === 9) {
+          this.markModuleCompleted(9);
+          this.navigateToModule(10);
+        } else if (this.currentModuleId < this.totalModules) {
           this.markModuleCompleted(this.currentModuleId);
           this.navigateToModule(this.currentModuleId + 1);
         }
@@ -162,7 +192,6 @@ class AppController {
     const brandLogo = document.querySelector('.brand-wrapper');
     if (brandLogo) {
       brandLogo.addEventListener('click', () => {
-        this.playClickSound();
         this.navigateToModule(1);
       });
     }
@@ -178,12 +207,55 @@ class AppController {
         document.querySelectorAll('.rules-content-tab').forEach(c => c.classList.remove('active'));
         const content = document.getElementById(targetId);
         if (content) content.classList.add('active');
-        this.playClickSound();
       });
     });
   }
 
+  navigateToLKPD() {
+    this.navigateToModule(5);
+    setTimeout(() => {
+      const hubCard = document.querySelector('[data-target="materi-view-lab-safety"]');
+      if (hubCard) hubCard.click();
+      setTimeout(() => {
+        const lkpdPill = document.querySelector('[data-pane="m1-lkpd"]');
+        if (lkpdPill) lkpdPill.click();
+        const lkpdBlock = document.getElementById('m1-lkpd');
+        if (lkpdBlock) lkpdBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    }, 60);
+  }
+
+  navigateToLabSafetySOP() {
+    this.navigateToModule(5);
+    setTimeout(() => {
+      const hubCard = document.querySelector('[data-target="materi-view-lab-safety"]');
+      if (hubCard) hubCard.click();
+      setTimeout(() => {
+        const sopPill = document.querySelector('[data-pane="m1-sop"]') || document.querySelector('[data-pane="m1-k3"]');
+        if (sopPill) sopPill.click();
+        const sopBlock = document.getElementById('m1-sop') || document.getElementById('m1-k3');
+        if (sopBlock) sopBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    }, 60);
+  }
+
   navigateToModule(modId, scroll = true) {
+    if (modId === 7) {
+      this.navigateToLKPD();
+      return;
+    }
+    if (modId === 6) {
+      this.navigateToModule(8, scroll);
+      return;
+    }
+    if (modId === 4) {
+      this.navigateToModule(5, scroll);
+      return;
+    }
+    if (modId === 3) {
+      this.navigateToLabSafetySOP();
+      return;
+    }
     if (modId < 1 || modId > this.totalModules) return;
     this.currentModuleId = modId;
 
@@ -197,13 +269,17 @@ class AppController {
       targetView.classList.add('active-view');
     }
 
+    // Reset dashboard nav item
+    const navDash = document.getElementById('nav-item-dashboard');
+    if (navDash) navDash.classList.remove('active');
+
     // Update Nav Bar Items
     document.querySelectorAll('.nav-module-item').forEach(item => {
       if (parseInt(item.dataset.mod, 10) === modId) {
         item.classList.add('active');
         // Scroll horizontal subnav agar item terlihat
         item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      } else {
+      } else if (item.id !== 'nav-item-dashboard') {
         item.classList.remove('active');
       }
     });
@@ -213,10 +289,48 @@ class AppController {
       // Refresh Three.js render
       this.threeEquipModule.loadApparatusModel(this.threeEquipModule.currentEquipId);
     } else if (modId === 5 && this.chemTheoryModule) {
+      const hubTab = document.querySelector('[data-target="materi-view-hub"]');
+      if (hubTab) hubTab.click();
       this.chemTheoryModule.initBohrCanvas();
     } else if (modId === 10 && this.certModule) {
       this.certModule.loadData();
       this.certModule.renderCertificateCanvas();
+    }
+
+    if (scroll) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  navigateToDashboard(scroll = true) {
+    // Sembunyikan semua halaman
+    document.querySelectorAll('.page-view').forEach(view => {
+      view.classList.remove('active-view');
+    });
+
+    // Reset status aktif di nav modules
+    document.querySelectorAll('.nav-module-item').forEach(item => {
+      item.classList.remove('active');
+    });
+    const navDash = document.getElementById('nav-item-dashboard');
+    if (navDash) navDash.classList.add('active');
+
+    if (window.AuthDashboard && window.AuthDashboard.currentUser) {
+      if (window.AuthDashboard.currentUser.role === 'guru') {
+        window.AuthDashboard.renderGuruDashboard();
+        const guruView = document.getElementById('page-dashboard-guru');
+        if (guruView) guruView.classList.add('active-view');
+      } else {
+        window.AuthDashboard.renderSiswaDashboard();
+        const siswaView = document.getElementById('page-dashboard-siswa');
+        if (siswaView) siswaView.classList.add('active-view');
+      }
+    } else {
+      if (window.AuthDashboard) {
+        window.AuthDashboard.showAuthModal();
+      }
+      const guruView = document.getElementById('page-dashboard-guru');
+      if (guruView) guruView.classList.add('active-view');
     }
 
     if (scroll) {
@@ -236,11 +350,16 @@ class AppController {
       const badge = card.querySelector('.mod-card-badge');
       if (badge) badge.textContent = '✓ Selesai';
     }
+
+    if (window.AuthDashboard && window.AuthDashboard.currentUser) {
+      window.AuthDashboard.recordOrUpdateStudentRecord(window.AuthDashboard.currentUser);
+    }
   }
 
   updateGlobalProgress() {
-    const completedCount = Object.values(this.completedModules).filter(Boolean).length;
-    const percent = Math.round((completedCount / this.totalModules) * 100);
+    const activeModIds = [1, 2, 5, 8, 9, 10];
+    const completedCount = activeModIds.filter(id => this.completedModules[id]).length;
+    const percent = Math.round((completedCount / activeModIds.length) * 100);
 
     const fillBar = document.getElementById('global-progress-fill');
     const textLabel = document.getElementById('global-progress-text');
@@ -249,7 +368,7 @@ class AppController {
     if (textLabel) textLabel.textContent = `${percent}%`;
 
     const homeStatCompleted = document.getElementById('home-stat-completed');
-    if (homeStatCompleted) homeStatCompleted.textContent = `${completedCount} / ${this.totalModules}`;
+    if (homeStatCompleted) homeStatCompleted.textContent = `${completedCount} / ${activeModIds.length}`;
   }
 
   setStudentName(name) {
@@ -267,6 +386,9 @@ class AppController {
     if (this.certModule) {
       this.certModule.score = score;
       this.certModule.renderCertificateCanvas();
+    }
+    if (window.AuthDashboard && window.AuthDashboard.currentUser) {
+      window.AuthDashboard.recordOrUpdateStudentRecord(window.AuthDashboard.currentUser, { nilaiKuis: score });
     }
   }
 
@@ -310,25 +432,7 @@ class AppController {
   }
 
   playClickSound() {
-    if (!this.audioCtx) return;
-    try {
-      if (this.audioCtx.state === 'suspended') {
-        this.audioCtx.resume();
-      }
-      const osc = this.audioCtx.createOscillator();
-      const gain = this.audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(600, this.audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(300, this.audioCtx.currentTime + 0.05);
-
-      gain.gain.setValueAtTime(0.08, this.audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.audioCtx.currentTime + 0.05);
-
-      osc.connect(gain);
-      gain.connect(this.audioCtx.destination);
-      osc.start();
-      osc.stop(this.audioCtx.currentTime + 0.05);
-    } catch (e) {}
+    // Suara aksi tombol dinonaktifkan sesuai permintaan pengguna
   }
 }
 

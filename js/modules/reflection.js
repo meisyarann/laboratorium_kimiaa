@@ -82,6 +82,20 @@ class ReflectionModule {
       console.warn("Gagal membaca refleksi:", e);
     }
   }
+
+  resetReflection() {
+    localStorage.removeItem(this.storageKey);
+    ['ref-learn-1', 'ref-learn-2', 'ref-learn-3', 'ref-interest-1', 'ref-interest-2', 'ref-question-1'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    const pledgeCheck = document.getElementById('ref-pledge-check');
+    if (pledgeCheck) pledgeCheck.checked = false;
+
+    this.rating = 5;
+    const stars = document.querySelectorAll('.star-rating-btn');
+    stars.forEach(s => s.textContent = '★');
+  }
 }
 
 window.ReflectionModule = ReflectionModule;

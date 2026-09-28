@@ -8,6 +8,7 @@ class CertificateModule {
     this.canvas = null;
     this.ctx = null;
     this.studentName = "NAMA PESERTA DIDIK";
+    this.studentClass = "";
     this.score = 85;
     this.teacherName = "Fatma Alawiyah, S.Pd.,Gr";
     this.teacherNIP = "200103272025212017";
@@ -30,6 +31,11 @@ class CertificateModule {
     const savedName = localStorage.getItem('chemvirtuallab_student_name');
     if (savedName && savedName.trim()) {
       this.studentName = savedName.trim();
+    }
+
+    const savedClass = localStorage.getItem('chemvirtuallab_student_class');
+    if (savedClass && savedClass.trim()) {
+      this.studentClass = savedClass.trim();
     }
 
     const savedScore = localStorage.getItem('chemvirtuallab_quiz_score');
@@ -173,13 +179,20 @@ class CertificateModule {
     ctx.lineTo(w / 2 + 320, 455);
     ctx.stroke();
 
+    // Kelas Siswa
+    if (this.studentClass) {
+      ctx.fillStyle = '#0369a1';
+      ctx.font = 'bold 20px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(`Peserta Didik &bull; Kelas ${this.studentClass}`, w / 2, 485);
+    }
+
     // Keterangan Prestasi
     ctx.fillStyle = '#1e293b';
     ctx.font = '20px "Plus Jakarta Sans", sans-serif';
     const descLine1 = "Telah menyelesaikan seluruh rangkaian modul interaktif pembelajaran kimia praktikum, meliputi:";
-    const descLine2 = "Alat Pelindung Diri (APD), Aturan Lab, Alat 3D & Simbol GHS, Teori Kimia, Praktikum Sederhana, serta Evaluasi Kuis";
-    ctx.fillText(descLine1, w / 2, 515);
-    ctx.fillText(descLine2, w / 2, 548);
+    const descLine2 = "Kartun APD, Pengenalan Alat Lab & Aturan K3, LKPD PBL, Teori Kimia, serta Evaluasi Kuis";
+    ctx.fillText(descLine1, w / 2, 520);
+    ctx.fillText(descLine2, w / 2, 552);
 
     // Predikat Kelulusan
     const predicate = this.score >= 85 ? "SANGAT BAIK (DISTINCTION)" : "BAIK (COMPETENT)";
